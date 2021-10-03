@@ -35,19 +35,28 @@ function InputForm( {inputText, setInputText, invItems, setInvItems} ) {
 
     return (
         <div className="wrapper">
-            <h2>Enter your item here</h2>
+            {/* <h2>Enter your item here</h2> */}
             <form action="">
-                <label htmlFor="mainInput"></label>
-                <input 
-                    onChange={inputTextHandler} 
-                    // when input hears change, run inputTextHandler
-                    value={inputText} 
-                    // When updating, change value to inputText to clear the form (set to '' in submitHandler).
-                    type="text" 
-                    name="mainInput" 
-                    className="mainInput">
-                </input>
-                <button onClick={submitHandler} className="submit">Gimme that item!</button>
+                <div className="inputContainer">
+                    <label 
+                        htmlFor="mainInput"
+                        className="sr-only"
+                        >
+                            Enter an item to store in your bag
+                        </label>
+                    <input 
+                        onChange={inputTextHandler} 
+                        // when input hears change, run inputTextHandler
+                        value={inputText} 
+                        // When updating, change value to inputText to clear the form (set to '' in submitHandler).
+                        type="text" 
+                        name="mainInput" 
+                        className="mainInput"
+                        placeholder="Enter an item to store in your bag"
+                        >
+                    </input>
+                </div>
+                <button onClick={submitHandler} className="submit">Store it!</button>
             </form>
         </div>
     )

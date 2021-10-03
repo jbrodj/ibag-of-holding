@@ -42,7 +42,7 @@ import React, {useState, useEffect} from 'react'
 // Importing the firebase config
 import realtime from './firebase'
 // Make firebase functions available
-import { ref, onValue, push } from 'firebase/database'
+import { ref, onValue } from 'firebase/database'
 // Importing components
 import InputForm from './InputForm.js';
 import InventoryList from './InventoryList.js';
@@ -78,7 +78,8 @@ useEffect( () => {
 
       const invObject = {
         key: propertyName,
-        title: bagData[propertyName]
+        title: bagData[propertyName],
+        quantity: 1
       }
       console.log(invObject)
       // Populate empty array with objects from the database. 
@@ -95,7 +96,8 @@ useEffect( () => {
 
       <header>
         <div className="wrapper">
-          <h1>We have a bag of holding, right?</h1>
+          <h1>iBag Of Holding 👝</h1>
+          <p>An inventory for your party's shared items & equipment!</p>
         </div>
       </header>
 
