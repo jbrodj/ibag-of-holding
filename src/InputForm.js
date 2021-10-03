@@ -1,3 +1,6 @@
+import { ref, push } from "@firebase/database"
+import realtime from "./firebase"
+
 // Create function and import props
 function InputForm( {inputText, setInputText, invItems, setInvItems} ) {
 
@@ -10,11 +13,22 @@ function InputForm( {inputText, setInputText, invItems, setInvItems} ) {
     const submitHandler = (e) => {
         console.log('wooooo submitted!!!')
         e.preventDefault()
-        setInvItems([
-            ...invItems, {text: inputText, deleted: false}
-        ])
-        // set text input back to empty
-        setInputText('')
+        // The commented lines are from a tutorial - trying something else
+        // setInvItems([
+        //     ...invItems, {text: inputText, deleted: false}
+        // ])
+
+        // Pushing to the database
+        if (inputText) {
+            const dbRef = ref(realtime);
+
+            push(dbRef, inputText);
+            // set text input back to empty
+            setInputText('')
+        } else {
+            alert('Oops! Please type the name of your object in the box.')
+        }
+
     }
 
     

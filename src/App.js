@@ -37,20 +37,57 @@
 
 
 
-
-import './App.css';
-import React, {useState} from 'react' 
+// Make react functions available
+import React, {useState, useEffect} from 'react' 
+// Importing the firebase config
+import realtime from './firebase'
+// Make firebase functions available
+import { ref, onValue, push } from 'firebase/database'
+// Importing components
 import InputForm from './InputForm.js';
 import InventoryList from './InventoryList.js';
+import './App.css';
 
 
 
 function App() {
 
-  // use state for the text in the input element 
+// use state for the text in the input element 
 const [inputText, setInputText] = useState('');
-// use state for the 
+// use state for the inventory items
 const [invItems, setInvItems] = useState([])
+
+
+// Call useEffect with empty dependency array - want to run this callback once at page load
+useEffect( () => {
+  // Reference to database, passing our realtime firebase import.
+  const dbRef = ref(realtime)
+
+  // Firebase subscription setup - listening for first connection to firebase and for data change in our database. Pass the snapshot to the callback. 
+  onValue(dbRef, (snapshot) => {
+    console.log(snapshot.val)
+    
+    const bagData = snapshot.val()
+
+    // Empty array that will store the inventory list. 
+    const newArray = []
+
+    // Looping over the database object and create object for each, and assign variable names to the item properties
+    for (let propertyName in bagData) {
+      console.log(propertyName)
+
+      const invObject = {
+        key: propertyName,
+        title: bagData[propertyName]
+      }
+      console.log(invObject)
+      // Populate empty array with objects from the database. 
+      newArray.push(invObject)
+    }
+    // Call state function and pass the newly populated array to put array in state. 
+    setInvItems(newArray)
+  })
+}, [])
 
 // JSX for page content
   return (
@@ -67,7 +104,7 @@ const [invItems, setInvItems] = useState([])
       </section>
 
       <section className="invSection">
-        <InventoryList />    
+        <InventoryList  invItems={invItems} />    
       </section>
         
       <footer>

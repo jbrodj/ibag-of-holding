@@ -1,11 +1,11 @@
 import ListItem from './ListItem.js'
 
-function InventoryList() {
-
+function InventoryList( { invItems } ) {
+    
     return (
         <div className="invDiv wrapper">
             <ul>
-                <ListItem />
+                <ListItem invItems={invItems} />
             </ul>
         </div>
     )
