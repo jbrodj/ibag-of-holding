@@ -17,7 +17,7 @@ html {
 }
 
 body  {
-  background-color: rgb(180, 161, 202);
+  background-color: #b4a1ca;
   background-color: #8A7EAB;
 }
 
@@ -154,11 +154,31 @@ ul {
   margin: 0.5rem 1rem;
 }
 
+.qtyContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 90px;
+  align-self: flex-end;
+}
+
+.incBtn, .decBtn {
+  height: 1.5rem;
+  min-width: 1rem;
+  margin: 0 0.1rem;
+}
+
+.incBtn:hover, .decBtn:hover,
+.incBtn:focus, .decBtn:focus {
+  background-color: #b4a1ca;
+}
+
 .deleteBtn {
   height: 1.5rem;
   min-width: 1.5rem;
   border: none;
   border-radius: 4px;
+  margin-left: 1rem;
 }
 
 .deleteBtn:hover,

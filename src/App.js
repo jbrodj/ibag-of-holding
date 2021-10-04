@@ -65,7 +65,7 @@ useEffect( () => {
 
   // Firebase subscription setup - listening for first connection to firebase and for data change in our database. Pass the snapshot to the callback. 
   onValue(dbRef, (snapshot) => {
-    console.log(snapshot.val)
+    // console.log(snapshot.val)
     
     const bagData = snapshot.val()
 
@@ -74,19 +74,20 @@ useEffect( () => {
 
     // Looping over the database object and create object for each, and assign variable names to the item properties
     for (let propertyName in bagData) {
-      console.log(propertyName)
-
+      // console.log(propertyName)
       const invObject = {
         key: propertyName,
-        title: bagData[propertyName],
-        quantity: 1
+        title: bagData[propertyName].name,
+        qty: bagData[propertyName].qty
       }
-      console.log(invObject)
+
+      // console.log(invObject)
       // Populate empty array with objects from the database. 
       newArray.push(invObject)
     }
     // Call state function and pass the newly populated array to put array in state. 
     setInvItems(newArray)
+    // console.log(newArray)
   })
 }, [])
 
@@ -110,7 +111,7 @@ useEffect( () => {
       </section>
         
       <footer>
-        <p>Made by Frannie, who is so good at react, at Juno College</p>
+        <p>Made by Brodie Day at Juno College</p>
       </footer>
     </div>
   );
