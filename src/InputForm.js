@@ -17,9 +17,9 @@ function InputForm( {inputText, setInputText} ) {
         // Pushing to the database
         if (inputText) {
             const dbRef = ref(realtime);
-
+            
             push(dbRef, {
-                qty: 0,
+                qty: 1,
                 name: inputText
             } );
             // set text input back to empty
@@ -30,7 +30,6 @@ function InputForm( {inputText, setInputText} ) {
 
     }
 
-    
 
     return (
         <div className="wrapper">

@@ -1,11 +1,8 @@
 import React from 'react' 
 import realtime from './firebase'
-import { ref, remove, update} from 'firebase/database'
+import { ref, remove, update } from 'firebase/database'
 
 function ListItem( { invItems }) {
-
-
-
 // console.log(invItems[0].qty)
 
     // Delete button event handler
@@ -14,21 +11,26 @@ function ListItem( { invItems }) {
         remove(nodeRef)
     }
 
-    const handleInc = (invItemKey) => {
-        // console.log(invItems)
-        const nodeRef = ref(realtime, invItemKey)
-        const dbRef = ref(realtime);
-        console.log(dbRef)
-        // const currentRef = nodeRef.val()
+    const handleInc = (invItem) => {
+        // Grabs the reference to the node
+        const nodeRef = ref(realtime, invItem.key)
+        //Creating the updated node value
+        const incrementVal = {
+            title: invItem.title,
+            qty: invItem.qty + 1
+        }
+        // Updating the node value
+        update(nodeRef, incrementVal)  
+    }
 
-        // const incrementVal = {
-        //     title: currentRef.title,
-        //     qty: currentRef.qty + 1
-        // }
+    const handleDec = (invItem) => {
+        const nodeRef = ref(realtime, invItem.key)
 
-        // console.log(nodeRef)
-        // update(nodeRef, incrementVal)
-        
+        const decrementVal = {
+            title: invItem.title, 
+            qty: invItem.qty - 1
+        }
+        update(nodeRef, decrementVal)
     }
 
 
@@ -47,13 +49,13 @@ function ListItem( { invItems }) {
                                 <p>{invItem.qty}</p>
                                     <button 
                                         className="incBtn"
-                                        onClick={ () => handleInc(invItem.key)}
+                                        onClick={ () => handleInc(invItem)}
                                         >
                                         +
                                     </button>
                                     <button 
                                         className="decBtn"
-                                        // onClick={ () => handleDec(invItem.key)}
+                                        onClick={ () => handleDec(invItem)}
                                     >
                                         -
                                     </button>
