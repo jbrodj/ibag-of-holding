@@ -2,27 +2,26 @@ import { ref, push } from "@firebase/database"
 import realtime from "./firebase"
 
 // Create function and import props
-function InputForm( {inputText, setInputText, invItems, setInvItems} ) {
+function InputForm( {inputText, setInputText} ) {
 
     // function to handle text input changes
     const inputTextHandler = (e) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setInputText(e.target.value)
     }
 
     const submitHandler = (e) => {
-        console.log('wooooo submitted!!!')
+        // console.log('wooooo submitted!!!')
         e.preventDefault()
-        // The commented lines are from a tutorial - trying something else
-        // setInvItems([
-        //     ...invItems, {text: inputText, deleted: false}
-        // ])
 
         // Pushing to the database
         if (inputText) {
             const dbRef = ref(realtime);
-
-            push(dbRef, inputText);
+            
+            push(dbRef, {
+                qty: 1,
+                name: inputText
+            } );
             // set text input back to empty
             setInputText('')
         } else {
@@ -31,11 +30,9 @@ function InputForm( {inputText, setInputText, invItems, setInvItems} ) {
 
     }
 
-    
 
     return (
         <div className="wrapper">
-            {/* <h2>Enter your item here</h2> */}
             <form action="">
                 <div className="inputContainer">
                     <label 
