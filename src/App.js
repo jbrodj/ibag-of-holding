@@ -74,20 +74,16 @@ useEffect( () => {
 
     // Looping over the database object and create object for each, and assign variable names to the item properties
     for (let propertyName in bagData) {
-      // console.log(propertyName)
       const invObject = {
         key: propertyName,
         title: bagData[propertyName].name,
         qty: bagData[propertyName].qty
       }
-
-      // console.log(invObject)
       // Populate empty array with objects from the database. 
       newArray.push(invObject)
     }
     // Call state function and pass the newly populated array to put array in state. 
     setInvItems(newArray)
-    // console.log(newArray)
   })
 }, [])
 

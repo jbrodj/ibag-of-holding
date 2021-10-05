@@ -1,9 +1,9 @@
 import React from 'react' 
 import realtime from './firebase'
 import { ref, remove, update } from 'firebase/database'
+// import { useState } from 'react/cjs/react.development'
 
 function ListItem( { invItems }) {
-// console.log(invItems[0].qty)
 
     // Delete button event handler
     const handleDelete = (invItemKey) => {
@@ -11,6 +11,7 @@ function ListItem( { invItems }) {
         remove(nodeRef)
     }
 
+    // Increment/Decrement quantity event handlers
     const handleInc = (invItem) => {
         // Grabs the reference to the node
         const nodeRef = ref(realtime, invItem.key)
@@ -22,7 +23,6 @@ function ListItem( { invItems }) {
         // Updating the node value
         update(nodeRef, incrementVal)  
     }
-
     const handleDec = (invItem) => {
         const nodeRef = ref(realtime, invItem.key)
 
@@ -33,34 +33,44 @@ function ListItem( { invItems }) {
         update(nodeRef, decrementVal)
     }
 
+    // CSS Class toggle for mobile view
+    // const [isActive, setActive] = useState(true);
+
+    // const handleToggle = () => {
+    //     setActive(!isActive);
+    // }
 
     return (
         <div className="itemContainer">
                 {
                     invItems.map( (invItem) => {
-                        // console.log(invItem)
                         return (
                             <li 
                                 className="invItem" 
                                 key={invItem.key}
+                                tabIndex="0"
+                                // onFocus={handleToggle}
                             >
                                 <p>{invItem.title}</p>
                                 <div className="qtyContainer">
                                 <p>{invItem.qty}</p>
+                                    <div className="qtyBtnContainer">
                                     <button 
-                                        className="incBtn"
+                                        // className= { isActive ? 'mobileHidden': null }
+                                        className="incBtn mobileHidden"
                                         onClick={ () => handleInc(invItem)}
                                         >
                                         +
                                     </button>
                                     <button 
-                                        className="decBtn"
+                                        className="decBtn mobileHidden"
                                         onClick={ () => handleDec(invItem)}
                                     >
                                         -
                                     </button>
+                                    </div>
                                     <button 
-                                        className="deleteBtn"
+                                        className="deleteBtn mobileHidden"
                                         onClick={ () => handleDelete(invItem.key)}
                                         > 
                                         <i className="fas fa-trash"></i>
