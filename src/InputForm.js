@@ -6,12 +6,10 @@ function InputForm( {inputText, setInputText} ) {
 
     // function to handle text input changes
     const inputTextHandler = (e) => {
-        // console.log(e.target.value)
         setInputText(e.target.value)
     }
 
     const submitHandler = (e) => {
-        // console.log('wooooo submitted!!!')
         e.preventDefault()
 
         // Pushing to the database
@@ -35,23 +33,24 @@ function InputForm( {inputText, setInputText} ) {
         <div className="wrapper">
             <form action="">
                 <div className="inputContainer">
-                    <label 
-                        htmlFor="mainInput"
-                        className="sr-only"
-                        >
-                            Enter an item to store in your bag
-                        </label>
                     <input 
                         onChange={inputTextHandler} 
                         // when input hears change, run inputTextHandler
                         value={inputText} 
                         // When updating, change value to inputText to clear the form (set to '' in submitHandler).
                         type="text" 
-                        name="mainInput" 
+                        name="mainInput"
+                        id="mainInput"
                         className="mainInput"
-                        placeholder="Enter an item to store in your bag"
+                        placeholder="Enter an item to store"
                         >
                     </input>
+                    <label 
+                        htmlFor="mainInput"
+                        className="mainLabel"
+                        >
+                            Enter an item to store
+                    </label>
                 </div>
                 <button onClick={submitHandler} className="submit">Store it!</button>
             </form>
