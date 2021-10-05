@@ -97,15 +97,16 @@ useEffect( () => {
           <p>An inventory for your party's shared items & equipment!</p>
         </div>
       </header>
+      <main>
+        <section className="formSection">
+          <InputForm setInputText={setInputText} inputText={inputText} setInvItems={setInvItems} invItems={invItems}/>
+        </section>
 
-      <section className="formSection">
-        <InputForm setInputText={setInputText} inputText={inputText} setInvItems={setInvItems} invItems={invItems}/>
-      </section>
-
-      <section className="invSection">
-        <InventoryList  invItems={invItems} />    
-      </section>
-        
+        <section className="invSection">
+          <InventoryList  invItems={invItems} />    
+        </section>
+          
+      </main>
       <footer>
         <p>Made by Brodie Day at Juno College</p>
       </footer>

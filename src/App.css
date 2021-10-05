@@ -24,6 +24,11 @@ body, input::placeholder, button {
   font-family: 'Architects Daughter', cursive;
 }
 
+main {
+  /* Height of main is screen height minus header+footer height to get footer to stick to bottom of page */
+  min-height: calc(100vh - 17rem);
+}
+
 .App {
   text-align: center;
 }
@@ -61,6 +66,7 @@ p, button {
 
 header {
   padding: 4rem 1rem;
+  min-height: 14rem;
 }
 
 h1 {
@@ -271,6 +277,7 @@ footer {
   background-color: whitesmoke;
   height: 3rem;
   padding: 0 2rem;
+  width: 100%;
 }
 
 
@@ -291,7 +298,7 @@ footer {
   }
 
   .inputContainer {
-    width: 100%;
+    width: 80%;
     margin: 0 0 2rem 0;
   }
 
