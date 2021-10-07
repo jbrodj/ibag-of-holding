@@ -16,7 +16,6 @@ html {
 }
 
 body  {
-  background-color: #b4a1ca;
   background-color: #8A7EAB;
 }
 
@@ -46,6 +45,16 @@ h1, p, ul, li, button {
 input {
   border-radius: 4px;
   height: 1.75rem;
+  font-family: inherit;
+  border-color: #D8B094;
+  background-color: #f7ddc4;
+}
+
+input:focus {
+  box-shadow: none;
+  outline: 3px solid #FFB900;
+  border-style: none;
+  transition: all 0.3s;
 }
 
 button {
@@ -93,18 +102,10 @@ form {
   transition: all 0.3s;
 }
 
-.inputContainer:focus-within > input{
-  transform: scale(1, 1.125);
-}
-
 .mainInput {
   width: 100%;
   padding: 0.25rem;
-  background-color: #f7ddc4;
-  box-shadow: none;
   border-color: #D8B094;
-  /* border-style: none none solid none; */
-  transition: all 0.3s;
 }
 
 .mainInput::placeholder {
@@ -166,39 +167,30 @@ form button:active {
   transition: all 0.3s;
 }
 
-/* .invDiv ul:focus-within {
-  transform: scale(1.2, 1.2);
-} */
-/* .invDiv li:focus-within {
-  border: 20px solid #8A7EAB;
-} */
-
 
 /* === ListItem Styles ===*/
 
 .listLegend {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
   border-bottom: 3px solid #FFB900;
   padding: 0.5rem 1rem;
+  background-color: #FFF1E3;
 }
 
 .listLegend p {
-  margin: 0 2.75rem 0.2rem 0;
+  margin: 0 3.75rem 0.2rem 0;
   font-weight: bold;
-
 }
 
 .invItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.1rem 1rem;
+  padding: 1rem 1rem;
   margin: 0;
   background-color: #f7ddc4;
   border: 3px solid #f7ddc4;
-  transition: all 0.3s;
 }
 
 .invItem:nth-of-type(2n) {
@@ -207,7 +199,6 @@ form button:active {
 }
 
 .invItem:hover {
-  background-color: #FFB900;
   background: linear-gradient(to right, #FFB900, transparent);
   border: 3px solid whitesmoke;
 }
@@ -215,6 +206,28 @@ form button:active {
 .invItem p {
   text-align: left;
   margin: 0 0.75rem 0 0;
+  max-width: 55%;
+  word-wrap: break-word;
+}
+
+.qtyInput {
+  text-align: center;
+  letter-spacing: 0.1rem;
+  width: 3rem;
+  background-color: #FFF1E3;
+  margin: 0 0.5rem;
+}
+
+/* Turn off spinner arrows on number input */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .qtyContainer {
@@ -222,6 +235,12 @@ form button:active {
   justify-content: space-between;
   align-items: center;
   min-width: 90px;
+}
+
+.qtyContainer > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .incBtn, .decBtn {
@@ -232,7 +251,6 @@ form button:active {
   font-weight: bold;
 }
 
-
 .incBtn:hover, .decBtn:hover,
 .incBtn:focus, .decBtn:focus {
   background-color: #8A7EAB;
@@ -242,6 +260,7 @@ form button:active {
 .qtyBtnContainer {
   display: flex;
   flex-direction: column;
+  order: -1;
 }
 
 .deleteBtn {
@@ -281,9 +300,9 @@ footer {
 }
 
 
-
 /* === Media Queries === */
 
+/* Tablet */
 
 @media (max-width: 880px) {
 
@@ -311,19 +330,27 @@ footer {
     padding: 1.5rem 0 0 0;
   }
 
-  li:focus-within {
-    height: 100px;
+  .listLegend p {
+    margin-right: 2.5rem;
   }
-  
+
   li > p {
     margin: 0;
     max-width: 55%;
   }
+
+  .deleteBtn {
+    margin-left: 0.5rem;
+  }
+
+  .qtyInput {
+    width: 2rem;
+  }
 }
 
+/* Mobile */
 
-
-@media (max-width: 480px) {
+@media (max-width: 550px) {
   .wrapper {
     width: 100%;
   }
@@ -331,14 +358,33 @@ footer {
   input {
     width: 80%;
   }
+
+  .invItem {
+    padding: 3rem 1.5rem;
+    position: relative;
+  }
+
+  .listLegend p {
+    margin-right: 1.15rem;
+  }
   
   li > p {
   max-width: 50%;
+  margin-left: 1rem;
 }
-  
-  /* .mobileHidden {
-    display: none;
-  } */
+
+.qtyContainer {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.deleteBtn {
+  margin: 1rem 0 0 0;
+  position: absolute;
+  top: -0.5rem;
+  right: 0.5rem;
+}
   
   footer {
     height: 4rem;

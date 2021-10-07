@@ -1,6 +1,7 @@
 import ListItem from './ListItem.js'
 
-function InventoryList( { invItems } ) {
+// Renders the structure of the inventory list & sends props to interactive parts of the section
+function InventoryList( { invItems, updateQty, setUpdateQty } ) {
     
     return (
         <div className="invDiv wrapper">
@@ -9,7 +10,7 @@ function InventoryList( { invItems } ) {
                     <p>Item name</p>
                     <p>Quantity</p>
                 </li>
-                <ListItem invItems={invItems} />
+                <ListItem invItems={invItems} updateQty={updateQty} setUpdateQty={setUpdateQty} />
             </ul>
         </div>
     )
