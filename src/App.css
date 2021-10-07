@@ -16,7 +16,6 @@ html {
 }
 
 body  {
-  background-color: #b4a1ca;
   background-color: #8A7EAB;
 }
 
@@ -174,7 +173,6 @@ form button:active {
 .listLegend {
   display: flex;
   justify-content: space-between;
-  /* margin-bottom: 0.5rem; */
   border-bottom: 3px solid #FFB900;
   padding: 0.5rem 1rem;
   background-color: #FFF1E3;
@@ -183,7 +181,6 @@ form button:active {
 .listLegend p {
   margin: 0 3.75rem 0.2rem 0;
   font-weight: bold;
-  
 }
 
 .invItem {
@@ -202,7 +199,6 @@ form button:active {
 }
 
 .invItem:hover {
-  background-color: #FFB900;
   background: linear-gradient(to right, #FFB900, transparent);
   border: 3px solid whitesmoke;
 }
@@ -304,7 +300,6 @@ footer {
 }
 
 
-
 /* === Media Queries === */
 
 /* Tablet */
@@ -351,7 +346,6 @@ footer {
   .qtyInput {
     width: 2rem;
   }
-
 }
 
 /* Mobile */
