@@ -1,18 +1,20 @@
 import { ref, push } from "@firebase/database"
 import realtime from "./firebase"
 
+// Section for handling user inputs in the main form element. 
+
 // Create function and import props
 function InputForm( {inputText, setInputText} ) {
 
-    // function to handle text input changes
+    // function to handle text input changes on the main form input
     const inputTextHandler = (e) => {
         setInputText(e.target.value)
     }
-
+    // Handling the submit button on the main form
     const submitHandler = (e) => {
         e.preventDefault()
 
-        // Pushing to the database
+        // Pushing values to the database if there's text in the input
         if (inputText) {
             const dbRef = ref(realtime);
             
@@ -52,7 +54,7 @@ function InputForm( {inputText, setInputText} ) {
                             Enter an item to store
                     </label>
                 </div>
-                <button onClick={submitHandler} className="submit">Store it!</button>
+                <button onClick={submitHandler} type="submit" className="submit">Store it!</button>
             </form>
         </div>
     )

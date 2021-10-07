@@ -25,16 +25,6 @@
     // Lets the party assign character names to the inventory items to show which character is currently carrying it.
     // Find a way to let the user update that property
 
-// For later stretch goals
-  // Get data from d&d5e api
-    // If the user's entry exists in the 5e equipment list:
-      // Use the string to qeury the api, and populate the firebase object with the json object properties. 
-      // Display relevant properties on the list item. 
-
-
-
-
-
 
 
 // Make react functions available
@@ -46,6 +36,7 @@ import { ref, onValue } from 'firebase/database'
 // Importing components
 import InputForm from './InputForm.js';
 import InventoryList from './InventoryList.js';
+
 import './App.css';
 
 
@@ -56,6 +47,8 @@ function App() {
 const [inputText, setInputText] = useState('');
 // use state for the inventory items
 const [invItems, setInvItems] = useState([])
+// use state for updating quantity of items via input element
+const [updateQty, setUpdateQty] = useState('')
 
 
 // Call useEffect with empty dependency array - want to run this callback once at page load
@@ -76,11 +69,12 @@ useEffect( () => {
     for (let propertyName in bagData) {
       const invObject = {
         key: propertyName,
-        title: bagData[propertyName].name,
-        qty: bagData[propertyName].qty
+        name: bagData[propertyName].name,
+        qty: bagData[propertyName].qty,
       }
       // Populate empty array with objects from the database. 
       newArray.push(invObject)
+      console.log(invObject)
     }
     // Call state function and pass the newly populated array to put array in state. 
     setInvItems(newArray)
@@ -90,23 +84,24 @@ useEffect( () => {
 // JSX for page content
   return (
     <div className="App">
-
       <header>
         <div className="wrapper">
           <h1>iBag Of Holding 👝</h1>
-          <p>An inventory for your party's shared items & equipment!</p>
+          <p>An inventory for your D&D party's shared items & equipment!</p>
         </div>
       </header>
+
       <main>
         <section className="formSection">
           <InputForm setInputText={setInputText} inputText={inputText} setInvItems={setInvItems} invItems={invItems}/>
         </section>
 
         <section className="invSection">
-          <InventoryList  invItems={invItems} />    
+          <InventoryList  invItems={invItems} updateQty={updateQty} setUpdateQty={setUpdateQty} />    
         </section>
           
       </main>
+
       <footer>
         <p>Made by Brodie Day at Juno College</p>
       </footer>
