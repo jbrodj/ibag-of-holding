@@ -4,7 +4,7 @@ import realtime from "./firebase"
 // Section for handling user inputs in the main form element. 
 
 // Create function and import props
-function InputForm( {inputText, setInputText} ) {
+function InputForm( {inputText, setInputText, loginStatus} ) {
 
     // function to handle text input changes on the main form input
     const inputTextHandler = (e) => {

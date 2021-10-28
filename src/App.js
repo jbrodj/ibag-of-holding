@@ -36,6 +36,7 @@ import { ref, onValue } from 'firebase/database'
 // Importing components
 import InputForm from './InputForm.js';
 import InventoryList from './InventoryList.js';
+import Login from './Login'
 
 import './App.css';
 
@@ -46,10 +47,11 @@ function App() {
 // use state for the text in the input element 
 const [inputText, setInputText] = useState('');
 // use state for the inventory items
-const [invItems, setInvItems] = useState([])
+const [invItems, setInvItems] = useState([]);
 // use state for updating quantity of items via input element
-const [updateQty, setUpdateQty] = useState('')
+const [updateQty, setUpdateQty] = useState('');
 
+const [loginStatus, setLoginStatus] = useState('');
 
 // Call useEffect with empty dependency array - want to run this callback once at page load
 useEffect( () => {
@@ -74,16 +76,15 @@ useEffect( () => {
       }
       // Populate empty array with objects from the database. 
       newArray.push(invObject)
-      console.log(invObject)
     }
     // Call state function and pass the newly populated array to put array in state. 
     setInvItems(newArray)
   })
 }, [])
 
-// JSX for page content
+if (loginStatus === '') {
   return (
-    <div className="App">
+        <div className="App">
       <header>
         <div className="wrapper">
           <h1>iBag Of Holding 👝</h1>
@@ -92,8 +93,34 @@ useEffect( () => {
       </header>
 
       <main>
+        <Login loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+      </main>
+
+      <footer>
+        <p>Made by Brodie Day at Juno College</p>
+      </footer>
+    </div>
+  )
+}
+
+if (loginStatus !== '') {
+
+  return (
+    <div className="App">
+      <header>
+        <div className="wrapper">
+          <h1>iBag Of Holding 👝</h1>
+          <p>An inventory for your D&D party's shared items & equipment!</p>
+        </div>
+        <div className="user">
+          <p>Logged in as {loginStatus}!</p>
+          <button className="logout">Log out</button>
+        </div>
+      </header>
+
+      <main>
         <section className="formSection">
-          <InputForm setInputText={setInputText} inputText={inputText} setInvItems={setInvItems} invItems={invItems}/>
+          <InputForm setInputText={setInputText} inputText={inputText} setInvItems={setInvItems} invItems={invItems} loginStatus={loginStatus}/>
         </section>
 
         <section className="invSection">
@@ -107,6 +134,7 @@ useEffect( () => {
       </footer>
     </div>
   );
+}
 }
 
 export default App;

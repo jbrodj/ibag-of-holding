@@ -96,6 +96,11 @@ form {
   align-items: flex-end;
 }
 
+.authContainer form {
+  flex-direction: column;
+  margin: 1rem auto;
+}
+
 .inputContainer {
   margin-right: 1rem;
   width: 60%;
