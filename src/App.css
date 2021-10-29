@@ -147,7 +147,15 @@ form button:focus {
   color: white;
 }
 
-form button:active {
+button:focus {
+  outline: 2px solid whitesmoke;
+} 
+
+form button:focus {
+  outline: 2px solid #FFB900;
+}
+
+button:active, form button:active {
   background-color: #FFB900;
   color: #8A7EAB;
 }
@@ -180,6 +188,7 @@ form button:active {
 
 .listLegend p {
   margin: 0 3.75rem 0.2rem 0;
+  letter-spacing: .05rem;
   font-weight: bold;
 }
 
@@ -189,13 +198,13 @@ form button:active {
   align-items: center;
   padding: 1rem 1rem;
   margin: 0;
-  background-color: #f7ddc4;
-  border: 3px solid #f7ddc4;
+  background-color: #FFF1E3;
+  border: 3px solid #FFF1E3;
 }
 
 .invItem:nth-of-type(2n) {
-  background-color: #FFF1E3;
-  border: 3px solid #FFF1E3;
+  background-color: #f7ddc4;
+  border: 3px solid #f7ddc4;
 }
 
 .invItem:hover {
@@ -206,6 +215,7 @@ form button:active {
 .invItem p {
   text-align: left;
   margin: 0 0.75rem 0 0;
+  letter-spacing: 0.03rem;
   max-width: 55%;
   word-wrap: break-word;
 }
@@ -244,7 +254,7 @@ input[type=number] {
 }
 
 .incBtn, .decBtn {
-  height: 1rem;
+  height: 1.3rem;
   min-width: 1.5rem;
   margin: 0.1rem 0;
   line-height: 0.5rem;
@@ -277,7 +287,7 @@ input[type=number] {
   color: white;
 }
 
-.deleteBtn:active {
+.deleteBtn:active, .incBtn:active, .decBtn:active {
   background-color: #FFB900;
   color: #8A7EAB;
 }
