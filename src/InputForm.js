@@ -15,6 +15,7 @@ function InputForm( {inputText, setInputText} ) {
         e.preventDefault()
 
         // Pushing values to the database if there's text in the input
+
         if (inputText) {
             const dbRef = ref(realtime);
             

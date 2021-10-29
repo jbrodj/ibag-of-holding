@@ -33,6 +33,8 @@ import React, {useState, useEffect} from 'react'
 import realtime from './firebase'
 // Make firebase functions available
 import { ref, onValue } from 'firebase/database'
+
+// import { Helmet } from 'react-helmet'
 // Importing components
 import InputForm from './InputForm.js';
 import InventoryList from './InventoryList.js';
@@ -49,6 +51,12 @@ const [inputText, setInputText] = useState('');
 const [invItems, setInvItems] = useState([])
 // use state for updating quantity of items via input element
 const [updateQty, setUpdateQty] = useState('')
+
+
+// Add page title.
+useEffect(() => {
+  document.title = "iBag of Holding"
+}, []);
 
 
 // Call useEffect with empty dependency array - want to run this callback once at page load
@@ -84,6 +92,7 @@ useEffect( () => {
 // JSX for page content
   return (
     <div className="App">
+      {/* <Helmet>iBag of Holding</Helmet> */}
       <header>
         <div className="wrapper">
           <h1>iBag Of Holding 👝</h1>

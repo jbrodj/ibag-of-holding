@@ -34,7 +34,7 @@ function ListItem( { invItems, updateQty, setUpdateQty }) {
     }
 
     return (
-        <div className="itemContainer">
+        <>
                 {
                     invItems.map( (invItem) => {
                         return (
@@ -73,7 +73,7 @@ function ListItem( { invItems, updateQty, setUpdateQty }) {
                         )
                     })
                 }
-        </div>
+        </>
     )
 }
 
