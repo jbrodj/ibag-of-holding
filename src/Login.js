@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "@firebase/auth";
 import { auth } from "./firebase.js"
 
-const Login = (loginStatus, setLoginStatus) => {
+const Login = (loginStatus, setLoginStatus, user, setUser) => {
     
 // use state for storing email address at registration
 const [registerEmail, setRegisterEmail] = useState('');
@@ -13,33 +13,36 @@ const [loginEmail, setLoginEmail] = useState('');
 
 const [loginPassword, setLoginPassword] = useState('');
 
-const [userId, setUserID] = useState('')
-    
+
+
+onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser)
+})
+    console.log(user?.email)
 
 // Async function that handles registration
     const register = async (e) => {
         e.preventDefault()
         try {
         const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-
-        setLoginStatus(user)
-        setUserID(auth.Object.lastNotifiedUid)
-        // console.log(user)
+        // setLoginStatus(true)
         } catch (error) {
             console.log(error.message)
         }
-        console.log(registerPassword)
-        console.log(registerEmail)
     }
-    console.log(auth)
-    console.log(userId)
 
-    const login = async () => {
-
+    const login = async (e) => {
+        e.preventDefault()
+        try {
+        const user = await signInWithEmailAndPassword(auth, registerEmail, registerPassword)
+        // setLoginStatus(true)
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
     const logout = async () => {
-
+        await signOut(auth)
     }
 
     const signupEmailChangeHandler = (event) => {
@@ -75,8 +78,12 @@ const [userId, setUserID] = useState('')
                 <label htmlFor="loginPassword">Password</label>
                 <input type="password" id="loginPassword" onChange={(event) => {setLoginPassword(event.target.value);
                 }}/>
-                <button className="submit">Log in!</button>
+                <button className="submit" onClick={login}>Log in!</button>
             </form>
+
+            <h3>Logged in as: </h3>
+                {user?.email}
+            <button onClick={logout}>Log out</button>
         </div>
     )
 }

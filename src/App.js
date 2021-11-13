@@ -53,6 +53,8 @@ const [updateQty, setUpdateQty] = useState('');
 
 const [loginStatus, setLoginStatus] = useState('');
 
+const [user, setUser] = useState({});
+
 // Call useEffect with empty dependency array - want to run this callback once at page load
 useEffect( () => {
   // Reference to database, passing our realtime firebase import.
@@ -93,7 +95,7 @@ if (loginStatus === '') {
       </header>
 
       <main>
-        <Login loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+        <Login loginStatus={loginStatus} setLoginStatus={setLoginStatus} user={user} setUser ={setUser} />
       </main>
 
       <footer>
